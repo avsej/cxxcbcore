@@ -1,0 +1,20 @@
+#ifndef CXXCBCORE_CONFIG_HXX
+#define CXXCBCORE_CONFIG_HXX
+
+#if CXXCBCORE_SHARED_LIBRARY
+#    if defined(_MSC_VER)
+#        if defined(CXXCBCORE_EXPORTS)
+#            define CXXCBCORE_EXPORT __declspec(dllexport)
+#        else
+#            define CXXCBCORE_EXPORT __declspec(dllimport)
+#        endif
+#    elif defined(__clang__) || defined(__GNUC__)
+#        define CXXCBCORE_EXPORT [[gnu::visibility("default")]]
+#    else
+#        define CXXCBCORE_EXPORT
+#    endif
+#else
+#    define CXXCBCORE_EXPORT
+#endif
+
+#endif
